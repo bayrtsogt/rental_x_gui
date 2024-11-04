@@ -1,0 +1,59 @@
+<div class="flex justify-content-center align-items-center">
+  <div style="width: 600px; height: calc(100vh - 100px)">
+    <p-card>
+      <ng-template pTemplate="headerless">
+        <div class="flex justify-content-center" style="border-bottom: 3px solid var(--main-blue); margin: 10px; padding: 10px">
+          <div style="font-size: 30px; font-weight: bold" class="color-blue">Бүртүүлэх</div>
+        </div>
+        <div class="grid">
+          <div class="col-6">
+            <div class="grid">
+              <div class="col-6">
+                <button pButton class="{{isTenant ? 'background-blue' : 'background-white'}}" (click)="isTenant = true">Түрээслэгч</button>
+              </div>
+              <div class="col-6">
+                <button pButton class="{{!isTenant ? 'background-blue' : 'background-white'}}" (click)="isTenant = false">Түрээслүүлэгч</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-6"></div>
+          <div class="col-6">
+            <div class="inputTitle">Хэрэглэгчийн овог</div>
+            <input pInputText [(ngModel)]="lastName">
+          </div>
+          <div class="col-6">
+            <div class="inputTitle">Хэрэглэгчийн нэр</div>
+            <input pInputText [(ngModel)]="firstName">
+          </div>
+          <div class="col-6">
+            <div class="inputTitle">Регистрийн дугаар</div>
+            <input pInputText [(ngModel)]="pin">
+          </div>
+          <div class="col-6">
+            <div class="inputTitle">Цахим шуудан хаяг</div>
+            <input pInputText [(ngModel)]="email">
+          </div>
+          <div class="col-6">
+            <div class="inputTitle">Холбоо барих утас</div>
+            <input pInputText [(ngModel)]="phoneNumber">
+          </div>
+          <div class="col-6">
+            <div class="inputTitle">Дансны дугаар</div>
+            <input pInputText [(ngModel)]="accountNumber">
+          </div>
+          <div class="col-6">
+            <div class="inputTitle">Нууц үг</div>
+            <input pInputText [(ngModel)]="password">
+          </div>
+          <div class="col-6">
+            <div class="inputTitle">Нууц үг давтах</div>
+            <input pInputText [(ngModel)]="passwordDuplicate">
+          </div>
+          <div class="col-12" align="right">
+            <button pButton class="main-button" (click)="register()">Бүртгүүлэх</button>
+          </div>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
