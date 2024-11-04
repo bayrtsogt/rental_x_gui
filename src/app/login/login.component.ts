@@ -8,7 +8,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-login',
   standalone: true,
   imports: [
     PrimeTemplate,
@@ -18,10 +18,10 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     FormsModule,
     HttpClientModule
   ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
-export class RegisterComponent implements OnInit{
+export class LoginComponent implements OnInit{
   isTenant: any;
   lastName: any;
   firstName: any;
@@ -40,20 +40,12 @@ export class RegisterComponent implements OnInit{
     this.isTenant = true;
   }
 
-  register() {
-    let tenant = {
-      "firstName":this.firstName,
-      "lastName":this.lastName,
-      "pin":this.pin,
-      "phoneNumber": this.phoneNumber,
-      "email":this.email,
-      "password":this.password,
-      "bankAccountNumber": this.accountNumber
-    };
-    this.http.post("http://127.0.0.1:8080/user/createTenant", JSON.stringify(tenant), {
+  login(){
+    this.http.get("http://127.0.0.1:8080/user/login?username=" + this.phoneNumber + "&password=" + this.password, {
       headers: { 'Content-Type': 'application/json' }
     }).subscribe(result => {
-      console.log("result", result);
+      console.log("Login RESULT ============== ", result);
     });
+
   }
 }
