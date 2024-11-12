@@ -1,51 +1,85 @@
-import {Component, OnInit} from '@angular/core';
-import {PrimeTemplate} from "primeng/api";
-import {CardModule} from "primeng/card";
-import {ChipsModule} from "primeng/chips";
-import {ActivatedRoute} from "@angular/router";
-import {ButtonDirective} from "primeng/button";
-import {FormsModule} from "@angular/forms";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [
-    PrimeTemplate,
-    CardModule,
-    ChipsModule,
-    ButtonDirective,
-    FormsModule,
-    HttpClientModule
-  ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
-  isTenant: any;
-  lastName: any;
-  firstName: any;
-  pin: any;
-  email: any;
+export class LoginComponent implements OnInit {
   phoneNumber: any;
-  accountNumber: any;
   password: any;
-  passwordDuplicate: any;
-  tenants: any;
+  displayRoles: any = false;
+  passwordVisible: boolean = false;  // To control password visibility
+  tenant: any = true;
+  owner: any = true;
+
   constructor(
-              private http: HttpClient,
-              ) {
-  }
+    private http: HttpClient,
+    private authService: AuthService,
+    private router: Router,
+    private messageService: MessageService
+  ) {}
+
   ngOnInit() {
-    this.isTenant = true;
+    this.displayRoles = this.authService.isAuthenticated();
   }
 
-  login(){
-    this.http.get("http://127.0.0.1:8080/user/login?username=" + this.phoneNumber + "&password=" + this.password, {
-      headers: { 'Content-Type': 'application/json' }
-    }).subscribe(result => {
-      console.log("Login RESULT ============== ", result);
-    });
+  login() {
+    if(!this.phoneNumber || !this.password){
+      return this.messageService.add({ severity: 'warning', summary: 'Амжилтгүй', detail: 'Нэвтрэх нэр, нууц үгээ зөв оруулна уу.' });
+    }
+    this.authService.login(this.phoneNumber, this.password).subscribe({
+      next: (user) => {
+        this.displayRoles = true;
+        this.http.get('http://localhost:8080/userRoleRelation/getRolesByUserId?userId=' + localStorage.getItem('userId'))
+          .subscribe((response: any) => {
+            if (response.length == 2){
+              localStorage.setItem('tenant', "true");
+              localStorage.setItem('owner', "true");
+              this.changeRole('owner');
+            }
+            else {
+              if(response[0].roleId == 2){
+                localStorage.setItem('tenant', "true");
+                localStorage.setItem('owner', "false");
+                this.changeRole('tenant');
+              }
+              else {
+                localStorage.setItem('tenant', "false");
+                localStorage.setItem('owner', "true");
+                this.changeRole('owner');
+              }
+            }
+          });
+      },
+      error: (error) => {
+        console.log('Invalid username or password');
 
+      }
+    });
+  }
+
+  changeRole(role: string) {
+    this.authService.setRole(role);
+    if (role == 'owner') {
+      if(localStorage.getItem('owner') == "true"){
+        this.router.navigate(['/owner/dashboard']);
+      }
+      else console.log("Түрээслүүлэгчийн эрхгүй байна та бүртгэлээ хийлгэнэ үү.")
+    }
+    if (role == 'tenant') {
+      if(localStorage.getItem('tenant') == "true"){
+        this.router.navigate(['/owner/dashboard']);
+      }
+      else console.log("Түрээслэгчийн эрхгүй байна та бүртгэлээ хийлгэнэ үү.")
+    }
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 }

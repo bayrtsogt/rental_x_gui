@@ -9,10 +9,10 @@
           <div class="col-6">
             <div class="grid">
               <div class="col-6">
-                <button pButton class="{{isTenant ? 'background-blue' : 'background-white'}}" (click)="isTenant = true">Түрээслэгч</button>
+                <p-button class="{{isTenant ? 'background-blue' : 'background-white'}}" label="Түрээслэгч" (click)="isTenant = !isTenant"></p-button>
               </div>
               <div class="col-6">
-                <button pButton class="{{!isTenant ? 'background-blue' : 'background-white'}}" (click)="isTenant = false">Түрээслүүлэгч</button>
+                <p-button class="{{isOwner ? 'background-blue' : 'background-white'}}" label="Түрээслүүлэгч" (click)="isOwner = !isOwner"></p-button>
               </div>
             </div>
           </div>
@@ -37,20 +37,25 @@
             <div class="inputTitle">Холбоо барих утас</div>
             <input pInputText [(ngModel)]="phoneNumber">
           </div>
-          <div class="col-6">
+          <div class="col-6" *ngIf="isOwner">
             <div class="inputTitle">Дансны дугаар</div>
             <input pInputText [(ngModel)]="accountNumber">
           </div>
+          <div class="col-6" *ngIf="isTenant">
+            <div class="inputTitle">Жолооны үнэмлэхний дугаар</div>
+            <input pInputText [(ngModel)]="driverLicense">
+          </div>
           <div class="col-6">
             <div class="inputTitle">Нууц үг</div>
-            <input pInputText [(ngModel)]="password">
-          </div>
-          <div class="col-6">
-            <div class="inputTitle">Нууц үг давтах</div>
-            <input pInputText [(ngModel)]="passwordDuplicate">
+            <div class="password-field">
+              <input pInputText
+                     [type]="passwordVisible ? 'text' : 'password'"
+                     [(ngModel)]="password">
+              <p-button icon="{{!passwordVisible ? 'pi pi-eye' : 'pi pi-eye-slash'}}" (click)="togglePasswordVisibility()"></p-button>
+            </div>
           </div>
           <div class="col-12" align="right">
-            <button pButton class="main-button" (click)="register()">Бүртгүүлэх</button>
+            <p-button class="main-button" (click)="register()" label="Бүртгүүлэх"></p-button>
           </div>
         </div>
       </ng-template>

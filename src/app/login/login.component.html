@@ -1,58 +1,28 @@
-<div class="flex justify-content-center align-items-center">
-  <div style="width: 600px; height: calc(100vh - 100px)">
+<div class="flex justify-content-center align-items-center" style=" height: calc(100vh - 200px)" *ngIf="!displayRoles">
+  <div style="width: 500px;">
     <p-card>
       <ng-template pTemplate="headerless">
         <div class="flex justify-content-center" style="border-bottom: 3px solid var(--main-blue); margin: 10px; padding: 10px">
           <div style="font-size: 30px; font-weight: bold" class="color-blue">Нэвтрэх</div>
         </div>
-
-
-        <div class="grid">
-          <div class="col-6">
-            <div class="grid">
-              <div class="col-6">
-                <button pButton class="{{isTenant ? 'background-blue' : 'background-white'}}" (click)="isTenant = true">Түрээслэгч</button>
-              </div>
-              <div class="col-6">
-                <button pButton class="{{!isTenant ? 'background-blue' : 'background-white'}}" (click)="isTenant = false">Түрээслүүлэгч</button>
+        <div class="flex justify-content-center">
+          <div class="grid"  style="width: 90%">
+            <div class="col-12">
+              <div class="inputTitle">Нэвтрэх нэр</div>
+              <input pInputText [(ngModel)]="phoneNumber">
+            </div>
+            <div class="col-12">
+              <div class="inputTitle">Нууц үг</div>
+              <div class="password-field">
+                <input pInputText
+                       [type]="passwordVisible ? 'text' : 'password'"
+                       [(ngModel)]="password">
+                <button pButton icon="{{!passwordVisible ? 'pi pi-eye' : 'pi pi-eye-slash'}}" (click)="togglePasswordVisibility()"></button>
               </div>
             </div>
-          </div>
-          <div class="col-6"></div>
-          <div class="col-6">
-            <div class="inputTitle">Хэрэглэгчийн овог</div>
-            <input pInputText [(ngModel)]="lastName">
-          </div>
-          <div class="col-6">
-            <div class="inputTitle">Хэрэглэгчийн нэр</div>
-            <input pInputText [(ngModel)]="firstName">
-          </div>
-          <div class="col-6">
-            <div class="inputTitle">Регистрийн дугаар</div>
-            <input pInputText [(ngModel)]="pin">
-          </div>
-          <div class="col-6">
-            <div class="inputTitle">Цахим шуудан хаяг</div>
-            <input pInputText [(ngModel)]="email">
-          </div>
-          <div class="col-6">
-            <div class="inputTitle">Холбоо барих утас</div>
-            <input pInputText [(ngModel)]="phoneNumber">
-          </div>
-          <div class="col-6">
-            <div class="inputTitle">Дансны дугаар</div>
-            <input pInputText [(ngModel)]="accountNumber">
-          </div>
-          <div class="col-6">
-            <div class="inputTitle">Нууц үг</div>
-            <input pInputText [(ngModel)]="password">
-          </div>
-          <div class="col-6">
-            <div class="inputTitle">Нууц үг давтах</div>
-            <input pInputText [(ngModel)]="passwordDuplicate">
-          </div>
-          <div class="col-12" align="right">
-            <button pButton class="main-button"  (click)="login()">Бүртгүүлэх</button>
+            <div class="col-12" align="center">
+              <button pButton class="main-button" (click)="login()">Нэвтрэх</button>
+            </div>
           </div>
         </div>
       </ng-template>

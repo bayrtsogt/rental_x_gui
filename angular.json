@@ -3,9 +3,19 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "rentalx-gui": {
+    "rentalx-gui-new": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/rentalx-gui",
+            "outputPath": "dist/rentalx-gui-new",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -25,9 +35,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -59,13 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "rentalx-gui:build:production"
+              "buildTarget": "rentalx-gui-new:build:production"
             },
             "development": {
-              "buildTarget": "rentalx-gui:build:development"
-            },
-            "options": {
-              "proxyConfig": "proxy.conf.json"
+              "buildTarget": "rentalx-gui-new:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "rentalx-gui:build"
+            "buildTarget": "rentalx-gui-new:build"
           }
         },
         "test": {

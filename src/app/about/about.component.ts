@@ -4,11 +4,6 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-about',
-  standalone: true,
-  imports: [
-    CardModule,
-    HttpClientModule
-  ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })

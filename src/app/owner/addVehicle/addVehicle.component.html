@@ -1,0 +1,95 @@
+<div>
+  <div class="grid" *ngIf="!section1done">
+    <div class="flex align-items-center justify-content-left">
+      <div class="col-8">
+        <input pInputText [(ngModel)]="platenumber" placeholder="Улсын дугаар">
+      </div>
+      <div class="col-4">
+        <p-button label="Шалгах" (click)="check()"></p-button>
+      </div>
+      <div class="col-4" *ngIf="manufactorDate && importYear">
+        <div class="years" align="right">
+          <span class="color-blue">{{ manufactorDate }}</span>
+          <span class="color-red">/</span>
+          <span class="color-blue">{{ importYear }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vehicle Information Fields -->
+    <div class="col-6">
+      <div class="inputTitle">Улс</div>
+      <input disabled pInputText placeholder="Улс" [(ngModel)]="region">
+    </div>
+    <div class="col-6">
+      <div class="inputTitle">Арлын дугаар</div>
+      <input disabled pInputText placeholder="Арлын дугаар" [(ngModel)]="cabinNumber">
+    </div>
+    <div class="col-6">
+      <div class="inputTitle">Үйлдвэр</div>
+      <input disabled pInputText placeholder="Үйлдвэр" [(ngModel)]="manufactor">
+    </div>
+    <div class="col-6">
+      <div class="inputTitle">Марк</div>
+      <input disabled pInputText placeholder="Марк" [(ngModel)]="markName">
+    </div>
+    <div class="col-6">
+      <div class="inputTitle">Моторын багтаамж</div>
+      <input disabled pInputText placeholder="Моторын багтаамж" [(ngModel)]="motor">
+    </div>
+    <div class="col-6">
+      <div class="inputTitle">Шатхууны төрөл</div>
+      <input disabled pInputText placeholder="Шатхууны төрөл" [(ngModel)]="fuelType">
+    </div>
+    <div class="col-6">
+      <div class="inputTitle">Жолооны хүрд</div>
+      <input disabled pInputText placeholder="Жолооны хүрд" [(ngModel)]="steeringwheel">
+    </div>
+    <div class="col-6">
+      <div class="inputTitle">Өнгө</div>
+      <input disabled pInputText placeholder="Өнгө" [(ngModel)]="color">
+    </div>
+    <div class="col-6">
+      <div class="inputTitle">Суудлын тоо</div>
+      <input disabled pInputText placeholder="Суудлын тоо" [(ngModel)]="manCount">
+    </div>
+    <div class="col-6">
+      <div class="inputTitle">Түрээслэх үнэ /өдрөөр/</div>
+      <input pInputText placeholder="Түрээслэх үнэ /өдрөөр/" [(ngModel)]="price">
+    </div>
+  </div>
+  <div class="flex justify-content-center align-items-center" *ngIf="section1done" style="width: 100%; height: 90%">
+    <div class="grid justify-content-center">
+      <div class="col-5">
+        <div  type="file" id="file" class="imageUpload" pTooltip="Урд хэсгийн зураг оруулах" tooltipPosition="top" (click)="openDialog('front')" >
+          <img src="assets/car-image-button/front.jpg" width="100%">
+        </div>
+        <!--                  </input>-->
+      </div>
+      <div class="col-5">
+        <div class="imageUpload" pTooltip="Ард хэсгийн зураг оруулах" tooltipPosition="top" (click)="openDialog('back')">
+          <img src="assets/car-image-button/back.jpg" width="100%">
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="imageUpload" pTooltip="Баруун талын зураг оруулах" tooltipPosition="top" (click)="openDialog('right')">
+          <img src="assets/car-image-button/left.jpg" width="100%">
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="imageUpload" pTooltip="Зүүн талын зураг оруулах" tooltipPosition="top" (click)="openDialog('left')">
+          <img src="assets/car-image-button/right.jpg" width="100%">
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="flex justify-content-right">
+    <p-button class="main-button" label="{{!section1done ? 'Мэдээлэл бүртгэх' : 'Зураг бүртгэж дууссан.'}}" (click)="!section1done ? createCar() : done()"></p-button>
+  </div>
+</div>
+
+<!-- Dialog for Photo Upload -->
+<p-dialog [(visible)]="displayDialogue" header="{{side ==  'front' ? 'Урд' : side ==  'back' ? 'Ард' : side ==  'right' ? 'Баруун' : 'Зүүн'}} талын зураг оруулах" [modal]="true" [closable]="true" (onHide)="closeDialog()">
+  <app-photo-upload [side]="side" [vehicleId]="vehicleId"></app-photo-upload>
+</p-dialog>

@@ -2,19 +2,40 @@
   <div class="grid">
     <div class="col-8">
       <div class="flex align-items-center justify-content-left">
-        <div class="logo" id="logo" routerLink="/about" (click)="scrollToMain()">
+        <div class="logo" id="logo" routerLink="/about" (click)="!authService.isAuthenticated() ? scrollToMain() : refresh()">
           <span class="color-blue" (click)="scrollToMain()">Rental</span>
           <span class="color-red" (click)="scrollToMain()">X</span>
         </div>
-        <div class="menu-title"  (click)="scrollToAbout()">Бидний тухай</div>
-        <div class="menu-title"  (click)="scrollToRent()">Түрээслэх</div>
-        <div class="menu-title"  (click)="scrollToRental()">Түрээслүүлэх</div>
+        <div class="menu-title" (click)="scrollToAbout()" *ngIf="!authService.isAuthenticated()">Бидний тухай</div>
+        <div class="menu-title" (click)="scrollToRent()" *ngIf="!authService.isAuthenticated()">Түрээслэх</div>
+        <div class="menu-title" (click)="scrollToRental()" *ngIf="!authService.isAuthenticated()">Түрээслүүлэх</div>
+        <div class="menu-title
+                    {{localStorage.getItem('role') == 'tenant' ? 'active' : ''}}
+                    {{localStorage.getItem('tenant') == 'false' ? 'disabled' : ''}}"
+             (click)="changeRole('tenant')" *ngIf="authService.isAuthenticated()">Түрээслэгч</div>
+        <div class="menu-title
+                    {{localStorage.getItem('role') == 'owner' ? 'active' : ''}}
+                    {{localStorage.getItem('owner') == 'false' ? 'disabled' : ''}}"
+             (click)="changeRole('owner')" *ngIf="authService.isAuthenticated()">Түрээслүүлэгч</div>
       </div>
     </div>
     <div class="col-4">
       <div class="flex align-items-center justify-content-right">
-        <div class="menu-title" routerLink="/register">Бүртгүүлэх</div>
-        <p-button label="Нэвтрэх" routerLink="/login"></p-button>
+        <div class="menu-title" routerLink="/register" *ngIf="!authService.isAuthenticated()">Бүртгүүлэх</div>
+        <p-button label="Нэвтрэх" routerLink="/login" *ngIf="!authService.isAuthenticated()"></p-button>
+
+        <!-- Display user name if authenticated -->
+        <span class="name" *ngIf="authService.isAuthenticated()">
+          Сайн байна уу ? {{
+          (localStorage.getItem('userName') + "")
+            .replace('"', '')
+            .replace('"', '')}}
+        </span>
+
+        <!-- Logout option -->
+        <div class="menu-title" *ngIf="authService.isAuthenticated()" (click)="logout()">
+          <i class="pi pi-sign-out"></i>
+        </div>
       </div>
     </div>
   </div>

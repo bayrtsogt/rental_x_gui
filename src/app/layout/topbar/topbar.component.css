@@ -28,3 +28,12 @@
 #main textBox{
   z-index: 100;
 }
+.name{
+  margin: 0 20px;
+}
+.active{
+  border-bottom: 2px solid var(--main-red);
+}
+.menu-title .disabled:hover{
+  border-bottom: 0px solid var(--main-red) !important;
+}

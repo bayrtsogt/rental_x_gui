@@ -1,0 +1,71 @@
+<div class="grid"  style="width: calc(100vw - 50px); height: 3rem; padding: 10px; margin:-15px 0px 25px 0px">
+  <div class="col-6 flex justify-content-left">
+    <div style="font-size: 20px; font-weight: 700; " class="color-blue">Миний машинууд</div>
+  </div>
+  <div class="col-6 flex justify-content-right">
+    <p-button label="Машин бүртгэх" icon="pi pi-plus" (click)="addVehicleVisible = true"></p-button>
+  </div>
+</div>
+
+<div class="flex justify-content-center align-items-center">
+  <div style="width: calc(100vw - 50px);">
+
+    <div class="grid">
+      <div class="col-12">
+        <div class="grid">
+          <div class="col-3 vehicle" *ngFor="let vehicle of vehicles">
+            <p-card>
+              <ng-template pTemplate="header">
+                <div class="grid" style="margin-bottom: -15px">
+                  <div class="col-8">
+                    <div class="flex justify-content-center" style="margin-left: 15px">
+                      <div class="title" style="font-size: 15px; width: 200px">{{vehicle.vehicle.markName + ' ' + vehicle.vehicle.modelName}}</div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="flex justify-content-right" style="margin-right: 25px">
+                      <div class="iconButton background-blue" pTooltip="Үйлчилгээнээс хасах" (click)="deleteCar($event)">
+                        <i  class=" pi pi-minus" style="font-size: 12px"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="body">
+                <div class="grid">
+                  <div class="col-12">
+                    <img src="data:image/jpeg;base64, {{vehicle.photo.photo}}" width="100%" height="150px" style="border-radius: 20px;"/>
+                  </div>
+                  <div class="col-6">
+                    <div class="top">
+                      <span class="label">Улсын дугаар:</span>
+                      <span class="value">{{ vehicle.vehicle.plateNumber }}</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="top">
+                      <span class="label">Төлөв:</span>
+                      <span class="status {{ vehicle.vehicle.status == 'ACTIVE' ? 'green' : 'red' }}">{{ vehicle.vehicle.status == "ACTIVE" ? 'Идэвхитэй' : 'Идэвхигүй' }}</span>
+                    </div>
+                  </div>
+                  <div class="col-6" style="margin: -10px 0">
+                    <div class="bottom">
+                      <span style="font-size: 12px">1 өдрийн түрээс</span>
+                      <span class="price">{{formatPrice(vehicle.vehicle.price)}}₮</span>
+                    </div>
+                  </div>
+                  <div class="col-6" align="right" style="margin: -10px 0">
+                    <button pButton style="margin-top: 11px; font-size: 12px" (click)="seeCalendar()"> Хуваарь харах</button>
+                  </div>
+                </div>
+              </ng-template>
+            </p-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-dialog [(visible)]="addVehicleVisible" header="Машин бүртгэх" [modal]="true" [closable]="true"  style="width: 50vw; height: 50vh;">
+  <app-addVehicle></app-addVehicle>
+</p-dialog>
