@@ -16,6 +16,12 @@ export class RoleGuard implements CanActivate {
     // If no user is logged in or user doesn't have the required role
     if (!role || !route.data['roles'].includes(role)) {
       // Redirect to the login page or show an error page
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('role');
+      localStorage.removeItem('tenant');
+      localStorage.removeItem('owner');
       this.router.navigate(['/login']);
       return false;
     }

@@ -29,6 +29,12 @@ import {SpeedDialModule} from "primeng/speeddial";
 import {ToggleButtonModule} from "primeng/togglebutton";
 import {MenuModule} from "primeng/menu";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {TenantDashboardComponent} from "./tenant/dashboard/tenant-dashboard.component";
+import {DropdownModule} from "primeng/dropdown";
+import {CalendarModule} from "primeng/calendar";
+import {ScrollPanelModule} from "primeng/scrollpanel";
+import {CarouselModule} from "primeng/carousel";
+import {TagModule} from "primeng/tag";
 
 @NgModule({
   declarations: [
@@ -40,31 +46,37 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
     AddVehicleComponent,
     DashboardComponent,
     PhotoUploadComponent,
-    RegisterComponent
+    RegisterComponent,
+    TenantDashboardComponent
   ],
-    imports: [
-        BrowserModule,  // Only in the root module
-        HttpClientModule,
-        RouterModule,
-        CardModule,
-        ButtonModule,
-        RippleModule,
-        ChipsModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        DockModule,
-        DialogModule,
-        ReactiveFormsModule,
-        ToastModule,
-        ProgressSpinnerModule,
-        InputTextModule,
-        SharedModule,
-        AppRoutingModule,
-        SpeedDialModule,
-        ToggleButtonModule,
-        MenuModule,
-        ConfirmDialogModule
-    ],
+  imports: [
+    BrowserModule,  // Only in the root module
+    HttpClientModule,
+    RouterModule,
+    CardModule,
+    ButtonModule,
+    RippleModule,
+    ChipsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    DockModule,
+    DialogModule,
+    ReactiveFormsModule,
+    ToastModule,
+    ProgressSpinnerModule,
+    InputTextModule,
+    SharedModule,
+    AppRoutingModule,
+    SpeedDialModule,
+    ToggleButtonModule,
+    MenuModule,
+    ConfirmDialogModule,
+    DropdownModule,
+    CalendarModule,
+    ScrollPanelModule,
+    CarouselModule,
+    TagModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true

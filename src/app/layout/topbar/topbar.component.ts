@@ -121,7 +121,7 @@ export class TopbarComponent implements OnInit{
     }
     if (role == 'tenant') {
       if(localStorage.getItem('tenant') == "true"){
-        this.router.navigate(['/owner/dashboard']);
+        this.router.navigate(['/tenant/dashboard']);
       }
       else console.log("Түрээслэгчийн эрхгүй байна та бүртгэлээ хийлгэнэ үү.")
     }

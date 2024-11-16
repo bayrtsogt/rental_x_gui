@@ -33,6 +33,8 @@ export class RegisterComponent implements OnInit{
               ) {
   }
   ngOnInit() {
+    this.isTenant = false;
+    this.isOwner = false;
   }
 
   register() {

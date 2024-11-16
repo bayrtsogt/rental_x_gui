@@ -96,7 +96,7 @@
         },
         {
           "file": "src/app/app-routing.module.ts",
-          "hash": "977713341840224859",
+          "hash": "6363609337301817544",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/router"
@@ -127,7 +127,7 @@
         },
         {
           "file": "src/app/app.module.ts",
-          "hash": "2842382633758739591",
+          "hash": "3589983536623602308",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/platform-browser",
@@ -147,7 +147,7 @@
         },
         {
           "file": "src/app/auth/auth.guard.ts",
-          "hash": "17304641495916553512",
+          "hash": "7448916568979180059",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/router",
@@ -181,7 +181,7 @@
         },
         {
           "file": "src/app/auth/role.guard.ts",
-          "hash": "14875337018427538439",
+          "hash": "15414958539966701521",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/router",
@@ -194,7 +194,7 @@
         },
         {
           "file": "src/app/layout/topbar/topbar.component.html",
-          "hash": "5168041713459621609"
+          "hash": "8945649828846693688"
         },
         {
           "file": "src/app/layout/topbar/topbar.component.spec.ts",
@@ -205,7 +205,7 @@
         },
         {
           "file": "src/app/layout/topbar/topbar.component.ts",
-          "hash": "11126095146228249951",
+          "hash": "15082402632038889547",
           "deps": [
             "npm:@angular/core",
             "npm:primeng",
@@ -297,7 +297,7 @@
         },
         {
           "file": "src/app/owner/addVehicle/addVehicle.component.html",
-          "hash": "15827430001109344006"
+          "hash": "17803408844032590600"
         },
         {
           "file": "src/app/owner/addVehicle/addVehicle.component.spec.ts",
@@ -308,7 +308,7 @@
         },
         {
           "file": "src/app/owner/addVehicle/addVehicle.component.ts",
-          "hash": "237892247029218253",
+          "hash": "10633475689896400437",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/router",
@@ -373,7 +373,7 @@
         },
         {
           "file": "src/app/register/register.component.html",
-          "hash": "7193306195486382760"
+          "hash": "17431100858972919056"
         },
         {
           "file": "src/app/register/register.component.spec.ts",
@@ -384,13 +384,62 @@
         },
         {
           "file": "src/app/register/register.component.ts",
-          "hash": "4475181542604593049",
+          "hash": "210530904610565242",
           "deps": [
             "npm:@angular/core",
             "npm:primeng",
             "npm:@angular/router",
             "npm:@angular/forms",
             "npm:@angular/common"
+          ]
+        },
+        {
+          "file": "src/app/tenant/dashboard/tenant-dashboard.component.css",
+          "hash": "13081320191804378056"
+        },
+        {
+          "file": "src/app/tenant/dashboard/tenant-dashboard.component.html",
+          "hash": "14095395898075245253"
+        },
+        {
+          "file": "src/app/tenant/dashboard/tenant-dashboard.component.spec.ts",
+          "hash": "15923350934730539181",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/tenant/dashboard/tenant-dashboard.component.ts",
+          "hash": "4153300910849599852",
+          "deps": [
+            "npm:@angular/core",
+            "npm:primeng",
+            "npm:@angular/common"
+          ]
+        },
+        {
+          "file": "src/app/tenant/rentVehicle/addVehicle.component.css",
+          "hash": "7854743068350960078"
+        },
+        {
+          "file": "src/app/tenant/rentVehicle/addVehicle.component.html",
+          "hash": "17803408844032590600"
+        },
+        {
+          "file": "src/app/tenant/rentVehicle/addVehicle.component.spec.ts",
+          "hash": "5636022720484098165",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/tenant/rentVehicle/addVehicle.component.ts",
+          "hash": "10633475689896400437",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:@angular/common",
+            "npm:primeng"
           ]
         },
         {
@@ -474,7 +523,7 @@
         },
         {
           "file": "src/styles.css",
-          "hash": "3768621862380349524"
+          "hash": "16501654541629865902"
         },
         {
           "file": "tsconfig.app.json",

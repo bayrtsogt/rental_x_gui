@@ -7,6 +7,7 @@ import {AddVehicleComponent} from "./owner/addVehicle/addVehicle.component";
 import {DashboardComponent} from "./owner/dashboard/dashboard.component";
 import {RoleGuard} from "./auth/role.guard";
 import {AuthGuard} from "./auth/auth.guard";
+import {TenantDashboardComponent} from "./tenant/dashboard/tenant-dashboard.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'owner/dashboard', pathMatch: 'full' },
@@ -18,6 +19,12 @@ const routes: Routes = [
     children: [
       // { path: 'dashboard', component: DashboardComponent},
       { path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuard], data: { roles: ['owner'] }},
+    ], canActivate: [AuthGuard]
+  },
+  {
+    path: 'tenant',
+    children: [
+      { path: 'dashboard', component: TenantDashboardComponent, canActivate: [RoleGuard], data: { roles: ['tenant'] }},
     ], canActivate: [AuthGuard]
   },
   // { path: '**', component: NotFoundComponent }  // Uncomment this for handling 404s

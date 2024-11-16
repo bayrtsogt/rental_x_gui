@@ -17,6 +17,12 @@ export class AuthGuard implements CanActivate {
     }
 
     // Not authenticated, redirect to login
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('role');
+    localStorage.removeItem('tenant');
+    localStorage.removeItem('owner');
     this.router.navigate(['/login']);
     return false;
   }

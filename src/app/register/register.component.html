@@ -9,10 +9,10 @@
           <div class="col-6">
             <div class="grid">
               <div class="col-6">
-                <p-button class="{{isTenant ? 'background-blue' : 'background-white'}}" label="Түрээслэгч" (click)="isTenant = !isTenant"></p-button>
+                <button class="{{isTenant ? 'background-blue' : 'background-white'}}" (click)="isTenant = !isTenant">Түрээслэгч</button>
               </div>
               <div class="col-6">
-                <p-button class="{{isOwner ? 'background-blue' : 'background-white'}}" label="Түрээслүүлэгч" (click)="isOwner = !isOwner"></p-button>
+                <button class="{{isOwner ? 'background-blue' : 'background-white'}}" (click)="isOwner = !isOwner">Түрээслүүлэгч</button>
               </div>
             </div>
           </div>

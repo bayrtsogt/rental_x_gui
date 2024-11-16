@@ -34,6 +34,10 @@
 
         <!-- Logout option -->
         <div class="menu-title" *ngIf="authService.isAuthenticated()" (click)="logout()">
+          <i class="pi pi-user"></i>
+        </div>
+        <!-- Logout option -->
+        <div class="menu-title" *ngIf="authService.isAuthenticated()" (click)="logout()">
           <i class="pi pi-sign-out"></i>
         </div>
       </div>
