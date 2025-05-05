@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   passwordVisible: boolean = false;  // To control password visibility
   tenant: any = true;
   owner: any = true;
+  visibleResetPassword: any = false;
+  mailAddress: any;
 
   constructor(
     private http: HttpClient,
@@ -34,27 +36,9 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(this.phoneNumber, this.password).subscribe({
       next: (user) => {
-        this.displayRoles = true;
-        this.http.get('http://localhost:8080/userRoleRelation/getRolesByUserId?userId=' + localStorage.getItem('userId'))
-          .subscribe((response: any) => {
-            if (response.length == 2){
-              localStorage.setItem('tenant', "true");
-              localStorage.setItem('owner', "true");
-              this.changeRole('owner');
-            }
-            else {
-              if(response[0].roleId == 2){
-                localStorage.setItem('tenant', "true");
-                localStorage.setItem('owner', "false");
-                this.changeRole('tenant');
-              }
-              else {
-                localStorage.setItem('tenant', "false");
-                localStorage.setItem('owner', "true");
-                this.changeRole('owner');
-              }
-            }
-          });
+        if(user != null){
+          this.displayRoles = true;
+        }
       },
       error: (error) => {
         console.log('Invalid username or password');
@@ -63,23 +47,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  changeRole(role: string) {
-    this.authService.setRole(role);
-    if (role == 'owner') {
-      if(localStorage.getItem('owner') == "true"){
-        this.router.navigate(['/owner/dashboard']);
-      }
-      else console.log("Түрээслүүлэгчийн эрхгүй байна та бүртгэлээ хийлгэнэ үү.")
-    }
-    if (role == 'tenant') {
-      if(localStorage.getItem('tenant') == "true"){
-        this.router.navigate(['/owner/dashboard']);
-      }
-      else console.log("Түрээслэгчийн эрхгүй байна та бүртгэлээ хийлгэнэ үү.")
-    }
-  }
-
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
+  }
+
+  sendPass() {
+    this.http.get('http://localhost:8080/user/getPassword?mail=' + this.mailAddress)
+      .subscribe((response: any) => {
+        this.messageService.add({
+          severity: "info",
+          summary: "Нууц үг илгээлээ.",
+          detail: "Та мейл хаягаа шалгана уу"
+        })
+        this.visibleResetPassword = false;
+      });
   }
 }

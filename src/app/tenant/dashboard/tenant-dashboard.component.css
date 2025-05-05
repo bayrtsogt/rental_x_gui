@@ -81,3 +81,18 @@ i{
 .p-carousel-next:hover {
   display: none;
 }
+.head{
+  padding: 10px;
+  font-size: 18px;
+}
+.subhead{
+  padding: 10px;
+  font-size: 15px;
+  text-decoration: underline;
+}
+.multiply{
+  background: #e4e4e4;
+  border-radius: 5px;
+  padding: 5px;
+  display: inline;
+}

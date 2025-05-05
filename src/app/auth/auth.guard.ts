@@ -12,11 +12,9 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.isAuthenticated()) {
-      // User is authenticated, check for role-based authorization if needed
       return true;
     }
 
-    // Not authenticated, redirect to login
     localStorage.removeItem('currentUser');
     localStorage.removeItem('userName');
     localStorage.removeItem('userId');

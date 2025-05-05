@@ -1,6 +1,6 @@
 {
   "version": "6.0",
-  "nxVersion": "20.0.12",
+  "nxVersion": "20.1.4",
   "pathMappings": {},
   "nxJsonPlugins": [],
   "fileMap": {
@@ -16,7 +16,7 @@
         },
         {
           "file": ".vscode/extensions.json",
-          "hash": "5331566439708925252"
+          "hash": "1743382037921588703"
         },
         {
           "file": ".vscode/launch.json",
@@ -32,20 +32,25 @@
         },
         {
           "file": "angular.json",
-          "hash": "17116414980126273257"
+          "hash": "16453334535939408301"
+        },
+        {
+          "file": "desktop.ini",
+          "hash": "7395868042254376629"
         },
         {
           "file": "package-lock.json",
-          "hash": "15835665994715234734"
+          "hash": "10023112863403435816"
         },
         {
           "file": "package.json",
-          "hash": "4706599298097980294",
+          "hash": "3912963477731740554",
           "deps": [
             "npm:@angular-devkit/build-angular",
             "npm:@angular/cli",
             "npm:@angular/compiler-cli",
             "npm:@types/jasmine",
+            "npm:@types/leaflet.markercluster",
             "npm:jasmine-core",
             "npm:karma",
             "npm:karma-chrome-launcher",
@@ -62,6 +67,11 @@
             "npm:@angular/platform-browser-dynamic",
             "npm:@angular/router",
             "npm:@nrwl/angular",
+            "npm:@types/crypto-js",
+            "npm:@types/leaflet",
+            "npm:crypto-js",
+            "npm:leaflet",
+            "npm:leaflet.markercluster",
             "npm:primeflex",
             "npm:primeicons",
             "npm:primeng",
@@ -76,31 +86,19 @@
         },
         {
           "file": "src/app/about/about.component.html",
-          "hash": "9379350426503409233"
+          "hash": "330421421380221091"
         },
         {
           "file": "src/app/about/about.component.spec.ts",
-          "hash": "5623631242477827208",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "5623631242477827208"
         },
         {
           "file": "src/app/about/about.component.ts",
-          "hash": "2891843318299691317",
-          "deps": [
-            "npm:@angular/core",
-            "npm:primeng",
-            "npm:@angular/common"
-          ]
+          "hash": "2891843318299691317"
         },
         {
           "file": "src/app/app-routing.module.ts",
-          "hash": "6363609337301817544",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router"
-          ]
+          "hash": "518835065647662035"
         },
         {
           "file": "src/app/app.component.css",
@@ -112,184 +110,107 @@
         },
         {
           "file": "src/app/app.component.spec.ts",
-          "hash": "8864575574456192303",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router"
-          ]
+          "hash": "8864575574456192303"
         },
         {
           "file": "src/app/app.component.ts",
-          "hash": "7226026093943415556",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "7226026093943415556"
         },
         {
           "file": "src/app/app.module.ts",
-          "hash": "3589983536623602308",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/platform-browser",
-            "npm:@angular/common",
-            "npm:@angular/router",
-            "npm:primeng",
-            "npm:@angular/forms"
-          ]
+          "hash": "13845129767184013638"
+        },
+        {
+          "file": "src/app/auth/EncryptionService.ts",
+          "hash": "3257323897544947679"
         },
         {
           "file": "src/app/auth/auth.guard.spec.ts",
-          "hash": "8826885499913990525",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router"
-          ]
+          "hash": "8826885499913990525"
         },
         {
           "file": "src/app/auth/auth.guard.ts",
-          "hash": "7448916568979180059",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "npm:rxjs"
-          ]
+          "hash": "8923124822058377177"
         },
         {
           "file": "src/app/auth/auth.service.spec.ts",
-          "hash": "6927655796975040699",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "6927655796975040699"
         },
         {
           "file": "src/app/auth/auth.service.ts",
-          "hash": "3851454900438600988",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common",
-            "npm:rxjs",
-            "npm:@angular/router"
-          ]
+          "hash": "4652586594503566131"
         },
         {
           "file": "src/app/auth/role.guard.spec.ts",
-          "hash": "687646714405844732",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router"
-          ]
+          "hash": "687646714405844732"
         },
         {
           "file": "src/app/auth/role.guard.ts",
-          "hash": "15414958539966701521",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "npm:rxjs"
-          ]
+          "hash": "15414958539966701521"
         },
         {
           "file": "src/app/layout/topbar/topbar.component.css",
-          "hash": "16422906988063495210"
+          "hash": "14422970380731198539"
         },
         {
           "file": "src/app/layout/topbar/topbar.component.html",
-          "hash": "8945649828846693688"
+          "hash": "794385774382566587"
         },
         {
           "file": "src/app/layout/topbar/topbar.component.spec.ts",
-          "hash": "18325608956657708667",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "18325608956657708667"
         },
         {
           "file": "src/app/layout/topbar/topbar.component.ts",
-          "hash": "15082402632038889547",
-          "deps": [
-            "npm:@angular/core",
-            "npm:primeng",
-            "npm:@angular/common",
-            "npm:@angular/router"
-          ]
+          "hash": "16268524323639098636"
         },
         {
           "file": "src/app/loader.service.spec.ts",
-          "hash": "4570084437099696481",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "4570084437099696481"
         },
         {
           "file": "src/app/loader.service.ts",
-          "hash": "5840385711805878014",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "5840385711805878014"
         },
         {
           "file": "src/app/loading.interceptor.spec.ts",
-          "hash": "4760669205062480914",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common"
-          ]
+          "hash": "4760669205062480914"
         },
         {
           "file": "src/app/loading.interceptor.ts",
-          "hash": "4849840581234495079",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common",
-            "npm:rxjs"
-          ]
+          "hash": "7171908928084316744"
         },
         {
           "file": "src/app/loadingComponent/loading.component.css",
-          "hash": "10191676804315979485"
+          "hash": "3572349688527160886"
         },
         {
           "file": "src/app/loadingComponent/loading.component.html",
-          "hash": "12987128091992659599"
+          "hash": "476032020951197021"
         },
         {
           "file": "src/app/loadingComponent/loading.component.spec.ts",
-          "hash": "16989393607471012378",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "16989393607471012378"
         },
         {
           "file": "src/app/loadingComponent/loading.component.ts",
-          "hash": "17576234664991174346",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "17576234664991174346"
         },
         {
           "file": "src/app/login/login.component.css",
-          "hash": "8566904911788160065"
+          "hash": "11230970613874079603"
         },
         {
           "file": "src/app/login/login.component.html",
-          "hash": "10415431756934448217"
+          "hash": "10566274358768620098"
         },
         {
           "file": "src/app/login/login.component.spec.ts",
-          "hash": "10730385221617188498",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "10730385221617188498"
         },
         {
           "file": "src/app/login/login.component.ts",
-          "hash": "10935138125653463960",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common",
-            "npm:@angular/router",
-            "npm:primeng"
-          ]
+          "hash": "10703351172628912079"
         },
         {
           "file": "src/app/owner/addVehicle/addVehicle.component.css",
@@ -297,50 +218,47 @@
         },
         {
           "file": "src/app/owner/addVehicle/addVehicle.component.html",
-          "hash": "17803408844032590600"
+          "hash": "3264491659561377777"
         },
         {
           "file": "src/app/owner/addVehicle/addVehicle.component.spec.ts",
-          "hash": "5636022720484098165",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "5636022720484098165"
         },
         {
           "file": "src/app/owner/addVehicle/addVehicle.component.ts",
-          "hash": "10633475689896400437",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "npm:@angular/common",
-            "npm:primeng"
-          ]
+          "hash": "15458150656755631913"
+        },
+        {
+          "file": "src/app/owner/calendar/calendar.component.css",
+          "hash": "13629010444932464871"
+        },
+        {
+          "file": "src/app/owner/calendar/calendar.component.html",
+          "hash": "8403959585446332351"
+        },
+        {
+          "file": "src/app/owner/calendar/calendar.component.spec.ts",
+          "hash": "13230359559546704860"
+        },
+        {
+          "file": "src/app/owner/calendar/calendar.component.ts",
+          "hash": "2061441133598102643"
         },
         {
           "file": "src/app/owner/dashboard/dashboard.component.css",
-          "hash": "4815608107347162289"
+          "hash": "3815654514251383954"
         },
         {
           "file": "src/app/owner/dashboard/dashboard.component.html",
-          "hash": "8974998934696722336"
+          "hash": "11618146602403019025"
         },
         {
           "file": "src/app/owner/dashboard/dashboard.component.spec.ts",
-          "hash": "8213465137135699087",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "8213465137135699087"
         },
         {
           "file": "src/app/owner/dashboard/dashboard.component.ts",
-          "hash": "9524518869421164191",
-          "deps": [
-            "npm:@angular/core",
-            "npm:primeng",
-            "npm:@angular/router",
-            "npm:@angular/forms",
-            "npm:@angular/common"
-          ]
+          "hash": "3765074251513833368"
         },
         {
           "file": "src/app/photo-upload/photo-upload.component.css",
@@ -348,24 +266,15 @@
         },
         {
           "file": "src/app/photo-upload/photo-upload.component.html",
-          "hash": "9533031739522865198"
+          "hash": "7010004121237297632"
         },
         {
           "file": "src/app/photo-upload/photo-upload.component.spec.ts",
-          "hash": "8507678450641423065",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "8507678450641423065"
         },
         {
           "file": "src/app/photo-upload/photo-upload.component.ts",
-          "hash": "6880127253976041700",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common",
-            "npm:@angular/forms",
-            "npm:primeng"
-          ]
+          "hash": "599255681804912746"
         },
         {
           "file": "src/app/register/register.component.css",
@@ -373,49 +282,47 @@
         },
         {
           "file": "src/app/register/register.component.html",
-          "hash": "17431100858972919056"
+          "hash": "5983102828236107484"
         },
         {
           "file": "src/app/register/register.component.spec.ts",
-          "hash": "8717394991776004070",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "8717394991776004070"
         },
         {
           "file": "src/app/register/register.component.ts",
-          "hash": "210530904610565242",
-          "deps": [
-            "npm:@angular/core",
-            "npm:primeng",
-            "npm:@angular/router",
-            "npm:@angular/forms",
-            "npm:@angular/common"
-          ]
+          "hash": "16149006691725617847"
+        },
+        {
+          "file": "src/app/restaurant/restaurant.component.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/app/restaurant/restaurant.component.html",
+          "hash": "6312151321982694553"
+        },
+        {
+          "file": "src/app/restaurant/restaurant.component.spec.ts",
+          "hash": "4971511358166126603"
+        },
+        {
+          "file": "src/app/restaurant/restaurant.component.ts",
+          "hash": "11266723256237867746"
         },
         {
           "file": "src/app/tenant/dashboard/tenant-dashboard.component.css",
-          "hash": "13081320191804378056"
+          "hash": "1683750381297980433"
         },
         {
           "file": "src/app/tenant/dashboard/tenant-dashboard.component.html",
-          "hash": "14095395898075245253"
+          "hash": "1749299125293079917"
         },
         {
           "file": "src/app/tenant/dashboard/tenant-dashboard.component.spec.ts",
-          "hash": "15923350934730539181",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "15923350934730539181"
         },
         {
           "file": "src/app/tenant/dashboard/tenant-dashboard.component.ts",
-          "hash": "4153300910849599852",
-          "deps": [
-            "npm:@angular/core",
-            "npm:primeng",
-            "npm:@angular/common"
-          ]
+          "hash": "11760994142162815964"
         },
         {
           "file": "src/app/tenant/rentVehicle/addVehicle.component.css",
@@ -423,24 +330,15 @@
         },
         {
           "file": "src/app/tenant/rentVehicle/addVehicle.component.html",
-          "hash": "17803408844032590600"
+          "hash": "17607844789298512306"
         },
         {
           "file": "src/app/tenant/rentVehicle/addVehicle.component.spec.ts",
-          "hash": "5636022720484098165",
-          "deps": [
-            "npm:@angular/core"
-          ]
+          "hash": "5636022720484098165"
         },
         {
           "file": "src/app/tenant/rentVehicle/addVehicle.component.ts",
-          "hash": "10633475689896400437",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router",
-            "npm:@angular/common",
-            "npm:primeng"
-          ]
+          "hash": "11659558819213672564"
         },
         {
           "file": "src/assets/.gitkeep",
@@ -455,24 +353,52 @@
           "hash": "14633596239541100692"
         },
         {
+          "file": "src/assets/bnks/bogd.png",
+          "hash": "2212454983060140915"
+        },
+        {
+          "file": "src/assets/bnks/golomtbank.png",
+          "hash": "933046476174293965"
+        },
+        {
+          "file": "src/assets/bnks/khanbank.png",
+          "hash": "2850155768512206790"
+        },
+        {
+          "file": "src/assets/bnks/khasbank.png",
+          "hash": "6153356013301102247"
+        },
+        {
+          "file": "src/assets/bnks/mbank.png",
+          "hash": "3592121790931231990"
+        },
+        {
+          "file": "src/assets/bnks/statebank.png",
+          "hash": "1798203034978827376"
+        },
+        {
+          "file": "src/assets/bnks/tdb.png",
+          "hash": "1773846629753786383"
+        },
+        {
           "file": "src/assets/bus.png",
           "hash": "15053997627170604443"
         },
         {
           "file": "src/assets/car-image-button/back.jpg",
-          "hash": "2444355716113766373"
+          "hash": "17994458206165404014"
         },
         {
           "file": "src/assets/car-image-button/front.jpg",
-          "hash": "3753434536785748343"
+          "hash": "14727761665974441247"
         },
         {
           "file": "src/assets/car-image-button/left.jpg",
-          "hash": "10986902414965720308"
+          "hash": "18152889949344854625"
         },
         {
           "file": "src/assets/car-image-button/right.jpg",
-          "hash": "16244651033391798189"
+          "hash": "2402384666664970287"
         },
         {
           "file": "src/assets/car.png",
@@ -512,10 +438,7 @@
         },
         {
           "file": "src/main.ts",
-          "hash": "12246588107753938993",
-          "deps": [
-            "npm:@angular/platform-browser-dynamic"
-          ]
+          "hash": "12246588107753938993"
         },
         {
           "file": "src/proxy.conf.json",
@@ -523,7 +446,7 @@
         },
         {
           "file": "src/styles.css",
-          "hash": "16501654541629865902"
+          "hash": "17354438665744718049"
         },
         {
           "file": "tsconfig.app.json",

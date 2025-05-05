@@ -49,6 +49,7 @@
       <div class="inputTitle">Суудлын тоо</div>
       <input disabled pInputText placeholder="Суудлын тоо" [(ngModel)]="manCount">
     </div>
+    <div class="blueLine"></div>
     <div class="col-6">
       <div class="inputTitle">Хурдны хайрцаг</div>
       <p-dropdown
@@ -59,41 +60,45 @@
     </div>
     <div class="col-6">
       <div class="inputTitle">Түрээслэх үнэ /өдрөөр/</div>
-      <input pInputText placeholder="Түрээслэх үнэ /өдрөөр/" [(ngModel)]="price">
+      <input pInputText placeholder="Түрээслэх үнэ /төгрөгөөр/" (keyup)="numberFormatter()" [(ngModel)]="price">
     </div>
   </div>
   <div class="flex justify-content-center align-items-center" *ngIf="section1done" style="width: 100%; height: 90%">
     <div class="grid justify-content-center">
       <div class="col-5">
         <div  type="file" id="file" class="imageUpload" pTooltip="Урд хэсгийн зураг оруулах" tooltipPosition="top" (click)="openDialog('front')" >
-          <img src="assets/car-image-button/front.jpg" width="100%">
+          <img *ngIf="!isDoneFront" src="assets/car-image-button/front.jpg" width="100%">
+          <img *ngIf="isDoneFront" src="{{frontImage}}" width="100%" height="150px" style="object-fit: cover">
         </div>
         <!--                  </input>-->
       </div>
       <div class="col-5">
         <div class="imageUpload" pTooltip="Ард хэсгийн зураг оруулах" tooltipPosition="top" (click)="openDialog('back')">
-          <img src="assets/car-image-button/back.jpg" width="100%">
+          <img *ngIf="!isDoneBack" src="assets/car-image-button/back.jpg" width="100%">
+          <img *ngIf="isDoneBack" src="{{backImage}}" width="100%" height="150px" style="object-fit: cover">
         </div>
       </div>
       <div class="col-5">
-        <div class="imageUpload" pTooltip="Баруун талын зураг оруулах" tooltipPosition="top" (click)="openDialog('right')">
-          <img src="assets/car-image-button/left.jpg" width="100%">
+        <div class="imageUpload" pTooltip="Баруун талын зураг оруулах" tooltipPosition="top" (click)="openDialog('left')">
+          <img *ngIf="!isDoneLeft" src="assets/car-image-button/left.jpg" width="100%">
+          <img *ngIf="isDoneLeft" src="{{leftImage}}" width="100%" height="150px" style="object-fit: cover">
         </div>
       </div>
       <div class="col-5">
-        <div class="imageUpload" pTooltip="Зүүн талын зураг оруулах" tooltipPosition="top" (click)="openDialog('left')">
-          <img src="assets/car-image-button/right.jpg" width="100%">
+        <div class="imageUpload" pTooltip="Зүүн талын зураг оруулах" tooltipPosition="top" (click)="openDialog('right')">
+          <img *ngIf="!isDoneRight" src="assets/car-image-button/right.jpg" width="100%">
+          <img *ngIf="isDoneRight" src="{{rightImage}}" width="100%" height="150px" style="object-fit: cover">
         </div>
       </div>
 
     </div>
   </div>
   <div class="flex justify-content-right">
-    <p-button class="main-button" label="{{!section1done ? 'Мэдээлэл бүртгэх' : 'Зураг бүртгэж дууссан.'}}" (click)="!section1done ? createCar() : done()"></p-button>
+    <p-button class="main-button" label="{{!section1done ? 'Үргэлжлүүлэх' : 'Машин бүртгэх.'}}" (click)="!section1done ? section1Done() : done()"></p-button>
   </div>
 </div>
 
 <!-- Dialog for Photo Upload -->
 <p-dialog [(visible)]="displayDialogue" header="{{side ==  'front' ? 'Урд' : side ==  'back' ? 'Ард' : side ==  'right' ? 'Баруун' : 'Зүүн'}} талын зураг оруулах" [modal]="true" [closable]="true" (onHide)="closeDialog()">
-  <app-photo-upload [side]="side" [vehicleId]="vehicleId"></app-photo-upload>
+  <app-photo-upload [side]="side" [vehicleId]="vehicleId" (sideFormData)="receiveData($event)"></app-photo-upload>
 </p-dialog>

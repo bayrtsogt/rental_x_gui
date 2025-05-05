@@ -1,50 +1,6 @@
 <div class="flex justify-content-center align-items-center">
   <div style="width: calc(100vw - 50px);">
     <div class="grid filter">
-      <div class="col-12"  *ngIf="isChoiced">
-        <p-card>
-          <ng-template pTemplate="headerless">
-            <div style="font-size: 12px; text-decoration: underline; cursor: pointer; margin-bottom: 5px" align="right" (click)="clear()">Бүх сонголтыг устгах</div>
-            <div class="grid">
-              <div class="col-2 align-items-center">
-                <div class="flex justify-content-left align-items-center">
-                  <div class="title" style="font-size: 25px;width: 50%">
-                    Хайх
-                    <i class="pi pi-search" style="font-size: 20px"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="col-10">
-                <div class="grid">
-                  <div class="col-2">
-                    <input placeholder="Доод үнэ" [(ngModel)]="lowPrice" pInputText/>
-                  </div>
-                  <div class="col-2">
-                    <input placeholder="Дээд үнэ" [(ngModel)]="highPrice" pInputText/>
-                  </div>
-                  <div class="col-2">
-                    <input placeholder="Хурдны хайрцаг" [(ngModel)]="gearBox" pInputText/>
-                  </div>
-                  <div class="col-2">
-                    <input placeholder="Суудлын тоо" [(ngModel)]="lowPrice" pInputText/>
-                  </div>
-                  <div class="col-2">
-                    <input placeholder="Машины ангилал" pInputText/>
-                  </div>
-                  <div class="col-2">
-                    <p-calendar
-                      [(ngModel)]="rangeDates"
-                      selectionMode="range"
-                      placeholder="Огноо"
-                      appendTo="body"
-                      [readonlyInput]="true" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-        </p-card>
-      </div>
       <div class="col-4" style="height: calc(100vh - 200px);" *ngIf="!isChoiced">
         <p-card>
           <ng-template pTemplate="header">
@@ -59,28 +15,38 @@
             </div>
           </ng-template>
           <ng-template pTemplate="body">
+            <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places" async defer></script>
+
             <div class="grid">
               <div class="col-6">
-                <input placeholder="Доод үнэ" [(ngModel)]="lowPrice" pInputText/>
+                <input placeholder="Доод үнэ" type="number" [(ngModel)]="lowPrice" pInputText/>
               </div>
               <div class="col-6">
                 <input placeholder="Дээд үнэ" [(ngModel)]="highPrice" pInputText/>
               </div>
               <div class="col-6">
-                <input placeholder="Хурдны хайрцаг" [(ngModel)]="gearBox" pInputText/>
+                <input placeholder="Суудлын тоо" [(ngModel)]="manCount" pInputText/>
               </div>
-              <div class="col-6">
-                <input placeholder="Суудлын тоо" [(ngModel)]="lowPrice" pInputText/>
-              </div>
-              <div class="col-6">
-                <input placeholder="Машины ангилал" pInputText/>
-              </div>
+              <!--              <div class="col-6">-->
+              <!--                <input placeholder="Машины ангилал" [(ngModel)]="class" pInputText/>-->
+              <!--              </div>-->
               <div class="col-6">
                 <p-calendar
                   [(ngModel)]="rangeDates"
                   selectionMode="range"
                   placeholder="Огноо"
                   [readonlyInput]="true" />
+              </div>
+              <div class="col-6">
+                <div class="flex align-items-center" style="height: 100%">
+                  Хурдны хайрцаг:</div>
+              </div>
+              <div class="col-6">
+                <p-dropdown
+                  [options]="gearboxes"
+                  [(ngModel)]="gearBox"
+                  optionLabel="name"
+                  placeholder="Хурдны хайрцаг" [required]="true" [ngStyle]="{'display': 'flex', 'width': '100%'}"/>
               </div>
               <div class="col-6"></div>
               <div class="col-6">
@@ -93,27 +59,7 @@
 
         </p-card>
       </div>
-      <div class="col-4" *ngIf="isChoiced">
-        <p-card>
-          <p-carousel
-            [value]="choicedVehicle.photos"
-            [numVisible]="1"
-            [numScroll]="1"
-            autoplayInterval="3000"
-            [circular]="true">
-            <ng-template let-product pTemplate="item">
-              <img
-                src="data:image/jpeg;base64, {{ product.photo }}"
-                [alt]="product.side"
-                class="w-full border-round" />
-            </ng-template>
-          </p-carousel>
-          <div>
-            {{choicedVehicle.vehicle.plateNumber}}
-          </div>
-        </p-card>
-      </div>
-      <div class="col-8">
+      <div class="col-8" *ngIf="!isChoiced">
         <p-scrollPanel [style]="{height: 'calc(100vh - 130px)', marginTop: '-8px'}">
           <div class="grid" style="margin: 10px; margin-top: 0px">
             <div class="col-12 vehicle" *ngFor="let vehicle of vehicles">
@@ -122,7 +68,7 @@
                 <ng-template pTemplate="body">
                   <div class="grid">
                     <div class="col-3">
-                      <img src="data:image/jpeg;base64, {{vehicle.photo.photo}}" width="100%" height="150px" style="border-radius: 20px;"/>
+                      <img src="data:image/jpeg;base64, {{vehicle.photo.photo}}" width="100%" height="150px" style="border-radius: 20px;" (click)="toModel(vehicle.vehicle.id)"/>
                     </div>
                     <div class="col-9">
                       <div class="grid">
@@ -185,7 +131,7 @@
                             <span style="font-size: 12px" align="right">1 өдрийн түрээс</span>
                           </div>
                           <div style="margin-top: 60px; margin-right: 20px;" align="right">
-                            <button pButton style="width: 150px;border-radius: 25px; border-bottom-right-radius: 80px" (click)="more(vehicle.vehicle.id)">Дэлгэрэнгүй</button>
+                            <button pButton style="width: 150px;border-radius: 25px; border-bottom-right-radius: 80px" (click)="more(vehicle.vehicle.id)">Түрээслэх</button>
                           </div>
                         </div>
                       </div>
@@ -196,10 +142,249 @@
             </div>
           </div>
         </p-scrollPanel>
+      </div>
+
+
+
+      <div class="col-5" *ngIf="isChoiced">
+        <p-card>
+          <p-galleria
+            [value]="choicedVehicle.photos"
+            [containerStyle]="{ width: '100%'}"
+            [showThumbnails]="false"
+            [thumbnailsPosition]="'bottom'"
+            [numVisible]="4"
+            [circular]="true"
+            [showIndicators]="false"
+            [showItemNavigators]="true"
+            [autoPlay]="true"
+            [transitionInterval]="3000">
+
+            <ng-template let-photo pTemplate="item">
+              <img
+                src="data:image/jpeg;base64, {{ photo.photo }}"
+                [alt]="photo.side"
+                style="width: 100%; height: 250px; object-fit: cover"
+                class="w-full border-round"
+              />
+            </ng-template>
+          </p-galleria>
+          <div class="grid" style="margin-top: 20px">
+            <div class="col-6">
+              <div class="top">
+                <i class="pi pi-users"></i>
+                <span class="label">{{ choicedVehicle.vehicle.manCount }} хүний суудалтай</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="top">
+                <i class="pi pi-gauge"></i>
+                <span class="label">{{ choicedVehicle.vehicle.gearBox ==  1 ?  'Автомат' :  choicedVehicle.vehicle.gearBox ==  2 ?  'Механик' : 'Автомат механик хосолсон'}} хурдны хайрцагтай</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="top">
+                <i class="pi pi-cog"></i>
+                <span class="label">{{ (choicedVehicle.vehicle.motorCapacity/1000).toFixed(1) }} литр моторын багтаамжтй</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="top">
+                <i class="pi pi-car"></i>
+                <span class="label">{{ choicedVehicle.vehicle.fuelType }}</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="top">
+                <i class="pi pi-calendar-clock"></i>
+                <span class="label">{{ choicedVehicle.vehicle.buildYear }} онд үйлдвэрлэсэн</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="top">
+                <i class="pi pi-calendar"></i>
+                <span class="label">{{ choicedVehicle.vehicle.importDate.toString().substring(0,4) }} онд орж ирсэн</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="top">
+                <i class="pi pi-circle-off"></i>
+                <span class="label">Жолооны хүрд {{ choicedVehicle.vehicle.wheelPosition.toLowerCase() }} талдаа</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="top">
+                <i class="pi pi-id-card"></i>
+                <span class="label">{{ choicedVehicle.vehicle.className }} ангилал</span>
+              </div>
+            </div>
+            <div class="col-12" style="height:30px"></div>
+            <div class="col-6">
+              <div class="flex align-items-bottom" style="height: 100%">
+                <i class="pi pi-map-marker"></i>
+                <span style="font-size:12px" align="left">{{choicedVehicle.location}}</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="bottom">
+                <span class="price" align="right">{{formatPrice(choicedVehicle.vehicle.price)}}₮</span>
+                <span style="font-size: 12px" align="right">1 өдрийн түрээс</span>
+              </div>
+            </div>
+          </div>
+        </p-card>
+      </div>
+      <div class="col-7"  *ngIf="isChoiced">
+        <div class="grid" style="padding: 0 40px">
+          <div class="col-12">
+            <div class="title" style="font-size: 25px; margin: 20px">Түрээслэх</div>
+          </div>
+          <div class="col-6">
+
+            <div class="col-12">
+              <div class="head">Эхлэх огноо</div>
+              <p-calendar
+                [(ngModel)]="startDate"
+                placeholder="Огноо сонгох"
+                [showTime]="true"
+                [readonlyInput]="true" />
+            </div>
+            <div class="col-12">
+              <div class="head">Дуусах огноо</div>
+              <p-calendar
+                [(ngModel)]="endDate"
+                placeholder="Огноо сонгох"
+                [showTime]="true"
+                (change)="datePicked()"
+                [readonlyInput]="true" />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="head">Төлбөрийн мэдээлэл</div>
+            <div class="subhead">Түрээсийн төлбөр</div>
+            <div class="grid">
+              <div class="col-3">
+                <span>{{formatPrice(choicedVehicle.vehicle.price)}}₮</span>
+              </div>
+              <div class="col-1" align="right"> X</div>
+              <div class="col-4" align="right">
+                <div class="multiply">
+                  {{startDate && endDate
+                  ? Math.floor((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) +
+                (Math.floor(((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60)) % 24) / 24) : 0}} өдөр
+                </div>
+
+              </div>
+              <div class="col-4" align="right">
+              <span>
+  {{formatPrice(choicedVehicle.vehicle.price *
+                (startDate && endDate
+                  ? Math.floor((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) +
+                  (Math.floor(((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60)) % 24) / 24)
+                  : 0))}}
+                ₮</span>
+              </div>
+
+            </div>
+
+            <div class="subhead">Барьцаа хураамж</div>
+            <div class="grid">
+              <div class="col-3">
+                <span>{{formatPrice(choicedVehicle.vehicle.price)}}₮</span>
+              </div>
+              <div class="col-1" align="right"> X</div>
+              <div class="col-4" align="right">
+                <div class="multiply">
+                  1 өдөр
+                </div>
+              </div>
+              <div class="col-4" align="right">
+              <span>{{formatPrice(choicedVehicle.vehicle.price)}}₮</span>
+              </div>
+
+            </div>
+            <div class="subhead">Нийт төлбөр</div>
+            <div class="grid">
+              <div class="col-12" align="right">
+              <span>{{formatPrice(choicedVehicle.vehicle.price * (startDate && endDate
+                ? (Math.floor((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) +
+                  (Math.floor(((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60)) % 24) / 24) + 1)
+                : 1))}}₮</span>
+              </div>
+
+            </div>
+
+            <div class="subhead">Үйлчилгээний төлбөр</div>
+            <div class="grid">
+              <div class="col-8" align="right">
+              <span>1%</span>
+              </div>
+              <div class="col-4" align="right">
+              <span>{{formatPrice(choicedVehicle.vehicle.price * (startDate && endDate
+                ? (Math.floor((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) +
+                  (Math.floor(((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60)) % 24) / 24) + 1)
+                : 1) /100 )}}₮</span>
+              </div>
+
+            </div>
+            <div class="subhead">Төлвөл зохих</div>
+            <div class="grid">
+              <div class="col-12" align="right">
+              <span>{{formatPrice(choicedVehicle.vehicle.price * (startDate && endDate
+                ? (Math.floor((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) +
+                  (Math.floor(((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60)) % 24) / 24) + 1)
+                : 1) * 101 / 100)}}₮</span>
+              </div>
+
+            </div>
+          </div>
+
+
+
+          <div class="col-5" (click)="toPay()" *ngIf="createdInvoice">
+            <span style="text-decoration: underline; cursor: pointer">Төлбөр төлөх холбоос</span>
+          </div>
+          <div class="col-1">
+<!--            <p-checkbox-->
+<!--              [(ngModel)]="checked"-->
+<!--              [binary]="true"-->
+<!--              inputId="binary" />-->
+          </div>
+          <div class="col-6" *ngIf="!createdInvoice" align="right" (click)="pay()">
+            <button pButton>Төлбөр төлөх</button>
+          </div>
+          <div class="col-6" *ngIf="createdInvoice" align="right" (click)="checkPay()">
+            <button pButton>Төлбөр шалгах</button>
+          </div>
+          <div class="col-12" align="right"  *ngIf="createdInvoice">
+            <button pButton  (click)="cancelOrder()">Захиалга цуцлах</button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
-</div>
-<p-dialog [(visible)]="addVehicleVisible" header="Машин бүртгэх" [modal]="true" [closable]="true"  style="width: 50vw; height: 50vh;">
-  <app-addVehicle></app-addVehicle>
+
+<p-galleria
+  [value]="lists"
+  [(visible)]="visibleList"
+  [containerStyle]="{ 'max-width': '850px' }"
+  [circular]="true"
+  [fullScreen]="true"
+  [showItemNavigators]="true"
+  [showThumbnails]="false">
+  <ng-template pTemplate="item" let-product>
+    <img
+      src="data:image/jpeg;base64, {{ product.photo }}"
+      [alt]="product.side"
+      class="w-full border-round"
+      style="width: 100%; display: block;"/>
+  </ng-template>
+</p-galleria>
+
+<p-dialog [(visible)]="addVehicleVisible" header="Машин бүртгэх" [modal]="true" [closable]="true"  style="width: 50vw; height: auto;">
+  <ng-template pTemplate="body">
+    <app-addVehicle></app-addVehicle>
+  </ng-template>
 </p-dialog>

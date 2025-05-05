@@ -3,14 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import {AboutComponent} from "./about/about.component";
 import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
-import {AddVehicleComponent} from "./owner/addVehicle/addVehicle.component";
 import {DashboardComponent} from "./owner/dashboard/dashboard.component";
 import {RoleGuard} from "./auth/role.guard";
 import {AuthGuard} from "./auth/auth.guard";
 import {TenantDashboardComponent} from "./tenant/dashboard/tenant-dashboard.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'owner/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'about', pathMatch: 'full' },
   { path: 'about', component: AboutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },

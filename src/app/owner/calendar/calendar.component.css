@@ -1,0 +1,30 @@
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.day {
+  height: 80px;
+  padding: 10px;
+  display: flex;
+  text-align: right;
+  justify-content: end;
+  border: 1px solid #ccc;
+  align-items: end;
+  border-radius: 10px;
+  background-color: #ffffff;
+  font-weight: bold;
+  color: #1B1C30;
+}
+
+.day.occupied {
+  border-top: 8px solid var(--main-blue)
+}

@@ -36,3 +36,10 @@
   top: 50%;
   transform: translateY(-50%);
 }
+.getPass{
+  margin: 5px;
+  cursor:pointer;
+}
+.getPass:hover{
+  text-decoration: underline;
+}

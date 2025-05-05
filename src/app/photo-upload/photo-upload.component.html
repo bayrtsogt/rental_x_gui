@@ -4,6 +4,6 @@
     <input type="file" (change)="onFileSelected($event)" accept="image/*">
   </div>
   <div class="col-4">
-    <button type="submit" [disabled]="!photo" (click)="onSubmit()">Зураг оруулах</button>
+    <button pButton  type="submit" [disabled]="!photo" (click)="onSubmit()">Зураг оруулах</button>
   </div>
 </div>

@@ -9,13 +9,13 @@
 
 <div class="flex justify-content-center align-items-center">
   <div style="width: calc(100vw - 50px);">
-
     <div class="grid">
       <div class="col-12">
         <div class="grid">
           <div class="col-3 vehicle" *ngFor="let vehicle of vehicles">
-            <p-card>
-              <ng-template pTemplate="header">
+            <div  class="card" [ngClass]="vehicle.vehicle.activeFlag == 0 ? 'disabledVehicle' : ''"
+                    [ngStyle]="vehicle.vehicle.activeFlag === 0 ? {'background': '#e4e4e4', 'box-shadow': 'none'} : {}">
+              <div class="header">
                 <div class="grid" style="margin-bottom: -15px">
                   <div class="col-8">
                     <div class="flex justify-content-center" style="margin-left: 15px">
@@ -24,14 +24,14 @@
                   </div>
                   <div class="col-4">
                     <div class="flex justify-content-right" style="margin-right: 25px">
-                      <div class="iconButton background-blue" pTooltip="Үйлчилгээнээс хасах" (click)="deleteCar($event)">
-                        <i  class=" pi pi-minus" style="font-size: 12px"></i>
+                      <div class="iconButton background-blue" pTooltip="{{vehicle.vehicle.activeFlag == 1 ? 'Үйлчилгээнээс хасах' : 'Үйлчилгээнд нэмэх'}}" (click)="vehicle.vehicle.activeFlag == 1 ? deleteCar(vehicle.vehicle.id) : addActive(vehicle.vehicle.id)">
+                        <i  class="{{vehicle.vehicle.activeFlag == 1 ? 'pi pi-minus' : 'pi pi-plus'}}" style="font-size: 12px"></i>
                       </div>
                     </div>
                   </div>
                 </div>
-              </ng-template>
-              <ng-template pTemplate="body">
+              </div>
+              <div class="body">
                 <div class="grid">
                   <div class="col-12">
                     <img src="data:image/jpeg;base64, {{vehicle.photo.photo}}" width="100%" height="150px" style="border-radius: 20px;"/>
@@ -45,27 +45,32 @@
                   <div class="col-6">
                     <div class="top">
                       <span class="label">Төлөв:</span>
-                      <span class="status {{ vehicle.vehicle.status == 'ACTIVE' ? 'green' : 'red' }}">{{ vehicle.vehicle.status == "ACTIVE" ? 'Идэвхитэй' : 'Идэвхигүй' }}</span>
+                      <span class="status {{ vehicle.vehicle.activeFlag == 1 ? 'green' : 'red' }}">{{ vehicle.vehicle.activeFlag == 1 ? 'Идэвхитэй' : 'Идэвхигүй' }}</span>
                     </div>
                   </div>
                   <div class="col-6" style="margin: -10px 0">
                     <div class="bottom">
-                      <span style="font-size: 12px">1 өдрийн түрээс</span>
+                      <span class="label" style="font-size: 12px">1 өдрийн түрээс</span>
                       <span class="price">{{formatPrice(vehicle.vehicle.price)}}₮</span>
                     </div>
                   </div>
                   <div class="col-6" align="right" style="margin: -10px 0">
-                    <button pButton style="margin-top: 11px; font-size: 12px" (click)="seeCalendar()"> Хуваарь харах</button>
+                    <button pButton style="margin-top: 11px; font-size: 12px" [disabled]="vehicle.vehicle.activeFlag != 1" (click)="seeCalendar(vehicle.vehicle.id)"> Хуваарь харах</button>
                   </div>
                 </div>
-              </ng-template>
-            </p-card>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<p-dialog [(visible)]="addVehicleVisible" header="Машин бүртгэх" [modal]="true" [closable]="true"  style="width: 50vw; height: 50vh;">
-  <app-addVehicle></app-addVehicle>
+<p-dialog [(visible)]="addVehicleVisible" header="Машин бүртгэх" [modal]="true" [closable]="true" style="width: 50vw; max-height: 80vh;">
+  <app-addVehicle style="display: flex;" (donenew)="done($event)"></app-addVehicle>
+</p-dialog>
+
+
+<p-dialog [(visible)]="viewCalendar" header="Захиалгын хуваарь" [modal]="true" [closable]="true" (onHide)="orders = null" style="width: 50vw; max-height: 90vh;">
+  <app-calendar [orders]="orders"></app-calendar>
 </p-dialog>

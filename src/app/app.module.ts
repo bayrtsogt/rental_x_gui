@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
+import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
 import {AboutComponent} from "./about/about.component";
 import {TopbarComponent} from "./layout/topbar/topbar.component";
@@ -35,6 +35,11 @@ import {CalendarModule} from "primeng/calendar";
 import {ScrollPanelModule} from "primeng/scrollpanel";
 import {CarouselModule} from "primeng/carousel";
 import {TagModule} from "primeng/tag";
+import {GalleriaModule} from "primeng/galleria";
+import {CheckboxModule} from "primeng/checkbox";
+import {EncryptionService} from "./auth/EncryptionService";
+import {CalendarComponent} from "./owner/calendar/calendar.component";
+import { RestaurantComponent } from './restaurant/restaurant.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,9 @@ import {TagModule} from "primeng/tag";
     DashboardComponent,
     PhotoUploadComponent,
     RegisterComponent,
-    TenantDashboardComponent
+    TenantDashboardComponent,
+    CalendarComponent,
+    RestaurantComponent
   ],
   imports: [
     BrowserModule,  // Only in the root module
@@ -75,13 +82,16 @@ import {TagModule} from "primeng/tag";
     CalendarModule,
     ScrollPanelModule,
     CarouselModule,
-    TagModule
+    TagModule,
+    GalleriaModule,
+    CheckboxModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
     },
     MessageService,
+    EncryptionService,
     ConfirmationService
   ],
   bootstrap: [AppComponent],
