@@ -1,6 +1,5 @@
-# RentalxGuiNew
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+# Автомашин түрээсийн систем
+Түрээслэгч болон түрээслүүлэгч ашиглах түрээсийн зарын систем
 
 ## Development server
 
